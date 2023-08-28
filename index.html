@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Flow+Block&family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- https://html2canvas.hertzen.com/dist/html2canvas.min.js -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="content" id="capture">
+      <div class="wraper">
+        <div class="block-1">
+          <div id="hidden-content">
+            <div class="frame"></div>
+          </div>
+        </div>
+        <div class="fotter">
+          <img
+            src="https://adv-tv-control.ms-global.co.il/media/default-tv-fotter/%D7%95%D7%90%D7%94%D7%91%D7%AA_%D7%9C%D7%A8%D7%A2%D7%9A_%D7%9B%D7%9E%D7%95%D7%9A_%D7%94%D7%99%D7%99%D7%9C%D7%99%D7%98%D7%A1_%D7%9E%D7%A1%D7%9A_2.png"
+            class="image-fotter svelte-1idxa8m"
+          /><img
+            src="https://adv-tv-control.ms-global.co.il/media/default-tv-fotter/%D7%9E%D7%A4%D7%A0%D7%A7_%D7%94%D7%90%D7%A8%D7%99%D7%95%D7%AA_%D7%94%D7%99%D7%99%D7%9C%D7%99%D7%98%D7%A1_copy_1.jpg"
+            class="image-fotter svelte-1idxa8m"
+          /><img
+            src="https://adv-tv-control.ms-global.co.il/media/default-tv-fotter/%D7%92%D7%95%D7%A0%D7%A1%D7%99%D7%A0%D7%95_%D7%94%D7%99%D7%99%D7%9C%D7%99%D7%98%D7%A1_%D7%9E%D7%A1%D7%9B%D7%99%D7%9D__1.png"
+            class="image-fotter svelte-1idxa8m"
+          /><img
+            src="https://adv-tv-control.ms-global.co.il/media/default-tv-fotter/%D7%91%D7%99%D7%96%D7%91%D7%99%D7%96_%D7%94%D7%99%D7%99%D7%9C%D7%99%D7%98%D7%A1_%D7%9E%D7%A1%D7%9A_1.png"
+            class="image-fotter svelte-1idxa8m"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Upload an image</label>
+      <input type="file" id="file" />
+    </div>
+
+    <button id="btn">download</button>
+
+    <style>
+      :root {
+        --assets-vh: 300px;
+        --fotter-vh: var(calc(100vh - var(--assets-vh)));
+      }
+      body {
+      }
+      :root {
+        --bg-clr: #ffffffc9;
+      }
+      * {
+        font-family: "Flow Block", cursive;
+        font-family: "Rubik", sans-serif;
+      }
+      .form-group {
+        margin-top: 50px;
+      }
+      .spinner-wraper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      #hidden-content {
+        flex: 1;
+      }
+      #hidden-content .frame {
+        height: var(--assets-vh);
+        width: calc(80 / 36 * var(--assets-vh));
+        margin: auto;
+        max-width: 100%;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      #hidden-content .frame img,
+      video {
+        aspect-ratio: 80 / 36;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+        height: 100vh;
+        /* background: url("/bg.svg") repeat;
+        background-size: 35%; */
+      }
+      .content .wraper .block-1 {
+        margin: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        /* 80 / 36 */
+        width: calc(80 / 36 * var(--assets-vh));
+        height: var(--assets-vh);
+        border: 1px solid black;
+      }
+      .block-2 {
+        width: calc(100%);
+        height: 10vh;
+
+        text-align: center;
+
+        font-size: 60px;
+
+        font-weight: bolder;
+      }
+
+      .fotter {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        height: var(--fotter-vh);
+        top: var(--assets-vh);
+        width: 100%;
+      }
+      .fotter .image-fotter {
+        height: 20vh;
+        max-width: 25vw;
+        width: 100%;
+        object-fit: contain;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+      }
+
+      .content {
+        margin-top: 20px;
+        /* max-width: 300px; */
+      }
+      .wraper {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        /* background: url(https://kehilaton.ms-global.co.il/bg.svg) repeat; */
+        background-size: 35%;
+      }
+      body {
+      }
+
+      @media print {
+        .form-group {
+          display: none;
+        }
+        #btn {
+          display: none;
+        }
+      }
+    </style>
+
+    <script>
+      document.querySelector("#file").addEventListener("change", function () {
+        const reader = new FileReader();
+        reader.addEventListener("load", (event) => {
+          const result = event.target.result;
+          //   check if image or video
+          if (result.includes("data:image")) {
+            const img = document.createElement("img");
+            img.src = result;
+            document.querySelector("#hidden-content .frame").innerHTML = "";
+            document.querySelector("#hidden-content .frame").appendChild(img);
+          } else if (result.includes("data:video")) {
+            const video = document.createElement("video");
+            video.src = result;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            document.querySelector("#hidden-content .frame").innerHTML = "";
+            document.querySelector("#hidden-content .frame").appendChild(video);
+          }
+        });
+        reader.readAsDataURL(this.files[0]);
+      });
+
+      //   download as img
+      document.querySelector("#btn").addEventListener("click", function () {
+        print();
+      });
+    </script>
+  </body>
+</html>
